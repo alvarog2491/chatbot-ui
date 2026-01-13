@@ -8,17 +8,19 @@ This repository contains a chatbot web interface built with **Next.js** and **Re
 
 ```
 .
-├── app/                    # Next.js app directory
+├── app/                    # Next.js app directory (pages & styles)
 ├── components/             # React components
-├── lib/                    # Utility functions and configuration
-│   └── api-config.ts       # API endpoint configuration
+│   ├── ui/                 # Reusable UI primitives
+│   └── ...                 # Feature components
+├── lib/                    # Utilities and types
+│   ├── api-config.ts       # API configuration
+│   ├── types.ts            # TypeScript definitions
+│   └── utils.ts            # Helper functions
 ├── public/                 # Static assets
-├── styles/                 # Global styles
 ├── cdk/                    # AWS CDK infrastructure
-│   ├── bin/                # CDK app entry point
-│   ├── lib/                # CDK stack definitions
-│   └── README.md           # CDK deployment guide
-└── package.json            # Next.js dependencies
+│   ├── bin/                # App entry point
+│   └── lib/                # Stack definitions
+└── package.json            # Dependencies
 ```
 
 To use this chatbot with your own API endpoints, follow these steps:
