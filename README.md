@@ -53,20 +53,15 @@ This project includes AWS CDK infrastructure for deployment to S3 + CloudFront.
 
 ### Quick Start
 
-1. Navigate to the CDK directory:
+1. From the project root, run the deployment script:
    ```bash
-   cd cdk
+   pnpm run deploy
    ```
 
-2. Install CDK dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Deploy to AWS:
-   ```bash
-   cdk deploy
-   ```
+   This command will automatically:
+   - Clean previous build artifacts
+   - Rebuild the application with your current `.env.local`
+   - Deploy the updated stack using AWS CDK
 
 After deployment completes, the CloudFront URL will be displayed in the outputs. You can access your application directly at the provided URL:
 
