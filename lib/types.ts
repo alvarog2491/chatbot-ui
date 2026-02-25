@@ -9,5 +9,7 @@ export interface Message {
 
 export interface ApiResponse {
     completion?: string
+    response?: string
+    sessionId?: string
     error?: string
 }

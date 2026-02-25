@@ -32,3 +32,4 @@ cdk/.cdk.staging
 cdk/*.js
 cdk/*.d.ts
 !cdk/jest.config.js
+certificates

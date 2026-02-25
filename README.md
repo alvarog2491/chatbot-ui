@@ -25,13 +25,12 @@ This repository contains a chatbot web interface built with **Next.js** and **Re
 
 To use this chatbot with your own API endpoints, follow these steps:
 
-1. **Environment Variables**: Create a `.env.local` file in the root directory (copy from `.env.example`):
+1. **Environment Variables**: Create a `.env.local` file in the root directory (copy from `.env.example` if available):
    ```bash
    cp .env.example .env.local
    ```
-2. **Update Values**: Update the variables in `.env.local`:
-   - `API_ENDPOINT`: Your API endpoint URL
-   - `API_KEY`: Your API authentication key
+2. **Update Values**: Update the variable in `.env.local`:
+   - `NEXT_PUBLIC_API_ENDPOINT`: Your API endpoint URL
 
 ## Local Development
 

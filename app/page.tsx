@@ -14,7 +14,7 @@ export default function ChatbotPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [sessionId] = useState(`session-${Date.now()}`)
+  const [sessionId, setSessionId] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Initialize with current time on client side to avoid hydration errors
@@ -59,22 +59,29 @@ export default function ChatbotPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": API_CONFIG.apiKey,
           Accept: "application/json",
+          "x-api-key": API_CONFIG.apiKey,
         },
         body: JSON.stringify({
-          inputText: userInput,
-          sessionId: sessionId,
-          enableTrace: true,
+          prompt: userInput,
+          ...(sessionId ? { sessionId } : {})
         }),
       })
 
+      const data = await response.json()
+      console.log("API Response Status:", response.status);
+      console.log("API Response Body:", data);
+
       if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`)
+        throw new Error(`API request failed with status ${response.status}: ${JSON.stringify(data)}`)
       }
 
-      const data: ApiResponse = await response.json()
-      const botResponse = data.completion || "I'm sorry, I couldn't process that request at the moment."
+
+      if ((data as ApiResponse).sessionId) {
+        setSessionId((data as ApiResponse).sessionId!)
+      }
+
+      const botResponse = (data as ApiResponse).response || "I'm sorry, I couldn't process that request."
 
       const assistantMessage: Message = {
         id: crypto.randomUUID(),
